@@ -37,7 +37,9 @@ import RegisterService from '../services/register-service'
         methods: {
             submit() {
                 RegisterService.createUser(this.form)
-                .then(response => console.log(response))
+                .then(() => {
+                    this.$router.push({name: 'Login', query: { redirect: '/login'}})
+                })
             }
         }
     }
