@@ -4,7 +4,7 @@ const RegisterService = {
     
 
     async createUser(registerForm) {
-        return await ApiService.post('register', registerForm);
+        return await ApiService.post('auth/register', registerForm);
     }
     
 }

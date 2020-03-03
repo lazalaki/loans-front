@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { store } from '../store'
 
 const axiosInstance = axios.create({
   headers: {
@@ -46,13 +47,16 @@ const ApiService = {
 
   mountInterceptors: function () {
     axiosInstance.interceptors.request.use(async function (config) {
+      store.dispatch('START_SPINNER_ACTION');
       return config;
     }, function(error) {
       return Promise.reject(error);
     })
     axiosInstance.interceptors.response.use(async function (config) {
+      store.dispatch('STOP_SPINNER_ACTION');
       return config.data
     }, function (error) {
+      store.dispatch('STOP_SPINNER_ACTION');
       return Promise.reject(error.response.data)
     })
   }

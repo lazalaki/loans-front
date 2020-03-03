@@ -16,12 +16,13 @@
             <label>Enter Password</label>
             <input type="password" class="form-control" id="input-4" required v-model="form.password">
         </div>
-        <button type="button" class="btn btn-primary" @click="submit">Submit</button>        
+        <button type="button" class="btn btn-primary" @click="submit">Submit</button> 
+        <button class="btn btn-primary" type="button" @click="goToLogin">Go To Login</button>       
     </div>
 </template>
 
 <script>
-import RegisterService from '../services/register-service'
+import RegisterService from '../../services/register-service'
     export default {
         data() {
             return {
@@ -40,6 +41,10 @@ import RegisterService from '../services/register-service'
                 .then(() => {
                     this.$router.push({name: 'Login', query: { redirect: '/login'}})
                 })
+            },
+
+            goToLogin() {
+                this.$router.push({ name: 'Login', query: { redirect: '/auth/register'}})
             }
         }
     }
